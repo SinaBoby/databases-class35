@@ -17,16 +17,21 @@ const execQuery = (query) => {
 };
 
 const PRINT_ALL_AUTHORS_AND_MENTORS = `
-  SELECT author_name, mentor FROM authors;
+  SELECT a.author_no AS author_id,
+  a.author_name as author_name,
+  b.author_name as mentor_name
+  from authors as a
+  JOIN authors as b
+  ON a.mentor = b.author_no;
 `;
 
 const PRINT_ALL_AUTHORS_COLUMNS_AND_PAPER_TITLE = `
   SELECT authors.*, research_Papers.paper_title 
   FROM authors
-  LEFT JOIN auth_res_papers 
-  ON auth_res_papers.author_no = authors.author_no
+  LEFT JOIN author_paper 
+  ON author_paper.author_id = authors.author_no
   LEFT JOIN research_Papers
-  ON auth_res_papers.paper_id = research_Papers.paper_id;
+  ON author_paper.paper_id = research_Papers.paper_id;
 `;
 
 connection.connect();
