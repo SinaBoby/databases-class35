@@ -1,6 +1,6 @@
 const faker = require('faker');
-const fetch = require("node-fetch");
-
+const fetch = (...args) =>
+  import('node-fetch').then(({ default: fetch }) => fetch(...args));
 const createFakeuser = () => ({
     name: faker.name.firstName() + ' ' + faker.name.lastName(),
     username: faker.internet.userName(),
@@ -9,7 +9,7 @@ const createFakeuser = () => ({
 
 exports.seed = async function (knex) {
     const fakeUsers = [];
-
+    
     const response = await fetch('https://api.github.com/repos/HackYourHomework/databases/pulls', {
         headers: {'Content-Type': 'application/json'}
     });
