@@ -1,0 +1,14 @@
+{
+  "name": "week2",
+  "version": "1.0.0",
+  "description": "week2 homework of databases",
+  "main": "homework1.js",
+  "scripts": {
+    "start": "node exercise_2.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mysql": "^2.18.1"
+  }
+}
