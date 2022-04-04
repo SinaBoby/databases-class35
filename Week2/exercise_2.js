@@ -10,8 +10,16 @@ const connection = mysql.createConnection({
 const execQuery = util.promisify(connection.query.bind(connection));
 
 async function createTable() {
-  const CREATE_RESEARCH_PAPERS = `CREATE TABLE IF NOT EXISTS research_papers (paper_id INT PRIMARY KEY ,paper_title VARCHAR(50) NOT NULL, conference VARCHAR(50), publish_date DATE);`;
-  const CREATE_AUTHOR_PAPER = `CREATE TABLE IF NOT EXISTS author_paper (author_id INT, paper_id INT,
+  const CREATE_RESEARCH_PAPERS = `
+  CREATE TABLE IF NOT EXISTS research_papers (
+  paper_id INT NOT NULL PRIMARY KEY ,
+  paper_title VARCHAR(50) NOT NULL, 
+  conference VARCHAR(50), 
+  publish_date DATE
+  );`;
+  const CREATE_AUTHOR_PAPER = `CREATE TABLE IF NOT EXISTS author_paper (
+  author_id INT NOT NULL, 
+  paper_id INT NOT NULL,
   CONSTRAINT fk_author FOREIGN KEY (author_id) REFERENCES authors(author_no),
   CONSTRAINT fk_paper FOREIGN KEY (paper_id) REFERENCES research_papers(paper_id) ,
   CONSTRAINT pk_author_paper PRIMARY KEY (author_id, paper_id)
