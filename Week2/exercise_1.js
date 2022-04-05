@@ -25,6 +25,8 @@ async function createTable() {
   `
   connection.connect();
   try {
+    await execQuery(`DROP TABLE IF EXISTS author_paper;`);
+    await execQuery(`DROP TABLE IF EXISTS authors;`);
     await execQuery(CREATE_AUTHORS);
     await execQuery(ADD_MENTOR)
   } catch (err) {

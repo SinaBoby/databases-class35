@@ -134,6 +134,8 @@ async function createTable() {
     `;
   connection.connect();
   try {
+    await execQuery(`DROP TABLE IF EXISTS author_paper;`);
+    await execQuery(`DROP TABLE IF EXISTS research_papers;`);
     await execQuery(CREATE_RESEARCH_PAPERS);
     await execQuery(CREATE_AUTHOR_PAPER);
     await execQuery(INSERT_AUTHORS, [authorValues]);
