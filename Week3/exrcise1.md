@@ -8,17 +8,17 @@ members, dinners, venues, foods to be in 3.5NF
 
 ### 3.Name all the tables and columns that would make a 3NF compliant solution.
 
-members(member_id int, member_name varchar(50), house_no int, street text)
+members(member_id INT NOT NULL, member_name VARCHAR(50) NOT NULL, house_no INT, street TEXT)
 
-dinners(dinner_id int, dinner_date date, venue_code int)
+dinners(dinner_id INT NOT NULL, dinner_date DATE, venue_code INT)
 
-member_dinner(member_id int, dinner_id int)
+member_dinner(member_id INT NOT NULL, dinner_id INT NOT NULL)
 
-venues(venue_code int, venue_description text)
+venues(venue_code INT NOT NULL, venue_description TEXT)
 
-foods(food_code int, food_description text)
+foods(food_code INT NOT NULL, food_description TEXT)
 
-dinner_food(dinner_id int, food_code int)
+dinner_food(dinner_id INT NOT NULL, food_code INT NOT NULL)
 
 
 

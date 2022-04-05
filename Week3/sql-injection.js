@@ -25,10 +25,10 @@ async function queryDatabase() {
         //const select_query = `select * from employees WHERE employee_id =  ${input_number};`
 
         // 2. Escaping the parameter ( replacing the unwanted characters)
-        const select_query = `select * from employees WHERE employee_id =` + connection.escape(input_number);
+       // const select_query = `select * from employees WHERE employee_id =` + connection.escape(input_number);
 
         // 3. Using a question mark syntax to do the escaping 
-        //const select_query = `select * from employees WHERE employee_id = ?`
+        const select_query = `select * from employees WHERE employee_id = ?`
 
         connection.connect();
         console.log(select_query);
