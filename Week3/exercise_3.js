@@ -31,7 +31,9 @@ const cb = (...result) => {
 function getPopulation(Country, name, code, cb) {
   // assuming that connection to the database is established and stored as conn
   conn.query(
-    `SELECT Population,Name FROM ${Country} WHERE Name =`+ conn.escape(name)+ 'AND code=' + conn.escape(code) ,
+    'SELECT Population FROM ' +
+      conn.escape(Country).slice(1, -1) +
+      ' WHERE Name = '+ conn.escape(name)+ ' AND code=' + conn.escape(code) ,
     function (err, result) {
       if (err) cb(err);
       if (result.length == 0) cb(new Error('Not found'));
@@ -42,4 +44,4 @@ function getPopulation(Country, name, code, cb) {
 }
 
 
-getPopulation('country', "Angola",`AGO` ,cb)
+getPopulation("country", "Angola",`AGO` ,cb)
